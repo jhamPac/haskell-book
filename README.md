@@ -2,4 +2,4 @@
 
 My attempt to the solutions and exercises in this book.
 
-Book available at: [Haskell Book]("https://haskellbook.com")
+Book available at: [Haskell Book](https://haskellbook.com)
