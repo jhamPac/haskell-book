@@ -1,3 +1,3 @@
 module Thirteen.Hangman where
 
-x = 5
+announcement = "Coming soon"
