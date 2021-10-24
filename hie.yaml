@@ -1,0 +1,13 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "haskell-book:lib"
+
+    - path: "./app/Main.hs"
+      component: "haskell-book:exe:haskell-book-exe"
+
+    - path: "./app/Paths_haskell_book.hs"
+      component: "haskell-book:exe:haskell-book-exe"
+
+    - path: "./test"
+      component: "haskell-book:test:haskell-book-test"
