@@ -9,6 +9,7 @@ copyright: "2021 jhamPac"
 extra-source-files:
     - README.md
     - ChangeLog.md
+    - src/Thirteen/data/dict.txt
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
@@ -21,6 +22,8 @@ description: Please see the README on GitHub at <https://github.com/jhamPac/hask
 
 dependencies:
     - base >= 4.7 && < 5
+    - random
+    - split
 
 library:
     source-dirs: src
