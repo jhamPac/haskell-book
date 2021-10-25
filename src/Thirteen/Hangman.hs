@@ -3,7 +3,7 @@ module Thirteen.Hangman where
 import           Control.Monad (forever)
 import           Data.Char     (toLower)
 import           Data.List     (intersperse)
-import           Data.Maybe    (isJust)
+import           Data.Maybe    (fromMaybe, isJust)
 import           System.Exit   (exitSuccess)
 import           System.Random (randomRIO)
 
@@ -45,5 +45,14 @@ data Puzzle =
 instance Show Puzzle where
     show (Puzzle _ discoverd guessed) = intersperse ' ' $ fmap renderPuzzleChar discoverd ++ " Guessed so far: " ++ guessed
 
+freshPuzzle :: String -> Puzzle
+freshPuzzle w = Puzzle w (map (const Nothing) w) []
+
+charInWord :: Puzzle -> Char -> Bool
+charInWord (Puzzle word _ _) char = char `elem` word
+
+alreadyGuessed :: Puzzle -> Char -> Bool
+alreadyGuessed (Puzzle _ _ guessed) char = char `elem` guessed
+
 renderPuzzleChar :: Maybe Char -> Char
-renderPuzzleChar = undefined
+renderPuzzleChar = fromMaybe '_'
