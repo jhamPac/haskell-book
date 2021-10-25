@@ -9,16 +9,16 @@ import           System.Random (randomRIO)
 
 type WordList = [String]
 
-allWords :: IO WordList
-allWords = do
-    dict <- readFile "data/dict.txt"
-    pure (lines dict)
-
 minWordLength :: Int
 minWordLength = 5
 
 maxWordLength :: Int
 maxWordLength = 9
+
+allWords :: IO WordList
+allWords = do
+    dict <- readFile "data/dict.txt"
+    pure (lines dict)
 
 gameWords :: IO WordList
 gameWords = do
