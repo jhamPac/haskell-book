@@ -1,6 +1,6 @@
 module Main where
 
-import           Data.Char
+import           Data.Char        (toLower)
 import           Thirteen.Hangman (freshPuzzle, randomWord', runGame)
 
 main :: IO ()
