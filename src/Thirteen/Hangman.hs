@@ -58,14 +58,15 @@ renderPuzzleChar :: Maybe Char -> Char
 renderPuzzleChar = fromMaybe '_'
 
 fillInCharacter :: Puzzle -> Char -> Puzzle
-fillInCharacter (Puzzle word filledInSoFar cs) c = Puzzle word newFilledInSoFar (c : cs)
-                                                where
-                                                    zipper guessed wordChar guessChar =
-                                                        if wordChar == guessed
-                                                        then Just wordChar
-                                                        else guessChar
+fillInCharacter (Puzzle word filledInSoFar cs) c =
+    Puzzle word newFilledInSoFar (c : cs)
+        where
+            zipper guessed wordChar guessChar =
+                if wordChar == guessed
+                then Just wordChar
+                else guessChar
 
-                                                    newFilledInSoFar = zipWith (zipper c) word filledInSoFar
+            newFilledInSoFar = zipWith (zipper c) word filledInSoFar
 
 handleGuess :: Puzzle -> Char -> IO Puzzle
 handleGuess puzzle guess = do
