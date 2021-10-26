@@ -60,13 +60,13 @@ renderPuzzleChar = fromMaybe '_'
 fillInCharacter :: Puzzle -> Char -> Puzzle
 fillInCharacter (Puzzle word filledInSoFar cs) c =
     Puzzle word newFilledInSoFar (c : cs)
-        where
-            zipper guessed wordChar guessChar =
-                if wordChar == guessed
-                then Just wordChar
-                else guessChar
+    where
+        zipper guessed wordChar guessChar =
+            if wordChar == guessed
+            then Just wordChar
+            else guessChar
 
-            newFilledInSoFar = zipWith (zipper c) word filledInSoFar
+        newFilledInSoFar = zipWith (zipper c) word filledInSoFar
 
 handleGuess :: Puzzle -> Char -> IO Puzzle
 handleGuess puzzle guess = do
@@ -81,3 +81,29 @@ handleGuess puzzle guess = do
         (False, _) -> do
             putStrLn "This character wasn't in the word, try again."
             pure (fillInCharacter puzzle guess)
+
+gameOver :: Puzzle -> IO ()
+gameOver (Puzzle word _ guessed) =
+    if length guessed > 5
+    then do putStrLn "Game Over!"
+            putStrLn $ "The word was: " ++ word
+            exitSuccess
+    else pure ()
+
+gameWin :: Puzzle -> IO ()
+gameWin (Puzzle _ filled _) =
+    if all isJust filled
+    then do putStrLn "You win, good job!"
+            exitSuccess
+    else pure ()
+
+runGame :: Puzzle -> IO ()
+runGame puzzle = forever $ do
+    gameOver puzzle
+    gameWin puzzle
+    putStrLn $ "Current puzzle is: " ++ show puzzle
+    putStr "Guess a letter: "
+    guess <- getLine
+    case guess of
+        [c] -> handleGuess puzzle c >>= runGame
+        _   -> putStrLn "Your guess must be a single character"
