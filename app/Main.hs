@@ -1,7 +1,11 @@
 module Main where
 
-import           Thirteen.Hangman
+import           Data.Char
+import           Thirteen.Hangman (freshPuzzle, randomWord', runGame)
 
 main :: IO ()
-main = print "Wait"
+main = do
+    word <- randomWord'
+    let puzzle = freshPuzzle (fmap toLower word)
+    runGame puzzle
 
