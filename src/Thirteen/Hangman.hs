@@ -7,7 +7,8 @@ import           Data.Maybe    (fromMaybe, isJust)
 import           System.Exit   (exitSuccess)
 import           System.Random (randomRIO)
 
-type WordList = [String]
+newtype WordList =
+    WordList [String] deriving (Eq, Show)
 
 minWordLength :: Int
 minWordLength = 5
@@ -18,21 +19,21 @@ maxWordLength = 9
 allWords :: IO WordList
 allWords = do
     dict <- readFile "data/dict.txt"
-    pure (lines dict)
+    pure $ WordList (lines dict)
 
 gameWords :: IO WordList
 gameWords = do
-    -- a <- allWords
-    -- pure (filter gameLength a)
+    (WordList a) <- allWords
+    pure $ WordList (filter gameLength a)
 
-    filter gameLength <$> allWords
+    -- filter gameLength <$> allWords
     where
         gameLength w =
             let l = length (w :: String)
             in l >= minWordLength && l < maxWordLength
 
 randomWord :: WordList -> IO String
-randomWord wl = do
+randomWord (WordList wl) = do
     randomIndex <- randomRIO (0, length wl - 1)
     pure $ wl !! randomIndex
 
