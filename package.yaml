@@ -24,6 +24,7 @@ dependencies:
     - base >= 4.7 && < 5
     - random
     - split
+    - hspec
 
 library:
     source-dirs: src

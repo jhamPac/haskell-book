@@ -26,6 +26,7 @@ source-repository head
 
 library
   exposed-modules:
+      Fourteen.Addition
       Thirteen.Hangman
   other-modules:
       Paths_haskell_book
@@ -33,6 +34,7 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , hspec
     , random
     , split
   default-language: Haskell2010
@@ -47,6 +49,7 @@ executable haskell-book-exe
   build-depends:
       base >=4.7 && <5
     , haskell-book
+    , hspec
     , random
     , split
   default-language: Haskell2010
@@ -62,6 +65,7 @@ test-suite haskell-book-test
   build-depends:
       base >=4.7 && <5
     , haskell-book
+    , hspec
     , random
     , split
   default-language: Haskell2010
