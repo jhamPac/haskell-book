@@ -17,6 +17,7 @@ convertToMorse = forever $ do
 
     line <- getLine
     convertLine line
+
     where
         convertLine line = do
             let morse = stringToMorse line
@@ -26,7 +27,35 @@ convertToMorse = forever $ do
                                 putStrLn $ "ERROR: " ++ line
                                 exitFailure
 
+convertFromMorse :: IO ()
+convertFromMorse = forever $ do
+    done <- isEOF
+    when done exitSuccess
 
+    line <- getLine
+    convertLine line
 
-main = print "Ye"
+    where
+        convertLine line = do
+            let decoded :: Maybe String
+                decoded =
+                    traverse morseToChar (words line)
+            case decoded of
+                (Just s) -> putStrLn s
+                Nothing -> do
+                            putStrLn $ "ERROR: " ++ line
+                            exitFailure
+
+main = do
+    mode <- getArgs
+    case mode of
+        [arg] ->
+            case arg of
+                "from" -> convertFromMorse
+                "to"   -> convertToMorse
+                _      -> argError
+
+        where argError = do
+                putStrLn "Please specify a from or to and then the argument"
+                exitFailure
 
