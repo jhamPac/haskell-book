@@ -3,11 +3,20 @@ cradle:
     - path: "./src"
       component: "haskell-book:lib"
 
-    - path: "./app/Main.hs"
-      component: "haskell-book:exe:haskell-book-exe"
+    - path: "./app/hangman/Main.hs"
+      component: "haskell-book:exe:hangman-exe"
 
     - path: "./app/Paths_haskell_book.hs"
-      component: "haskell-book:exe:haskell-book-exe"
+      component: "haskell-book:exe:hangman-exe"
 
-    - path: "./test"
-      component: "haskell-book:test:haskell-book-test"
+    - path: "./app/morse/Main.hs"
+      component: "haskell-book:exe:morse-exe"
+
+    - path: "./app/Paths_haskell_book.hs"
+      component: "haskell-book:exe:morse-exe"
+
+    - path: "./test/hangman"
+      component: "haskell-book:test:hangman-test"
+
+    - path: "./test/morse"
+      component: "haskell-book:test:morse-test"

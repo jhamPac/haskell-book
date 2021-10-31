@@ -54,6 +54,7 @@ main = do
                 "from" -> convertFromMorse
                 "to"   -> convertToMorse
                 _      -> argError
+        _ -> argError
 
         where argError = do
                 putStrLn "Please specify a from or to and then the argument"
