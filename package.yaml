@@ -42,9 +42,18 @@ executables:
             - haskell-book
 
 tests:
-    haskell-book-test:
+    hangman-test:
         main: Spec.hs
-        source-dirs: test
+        source-dirs: test/hangman
+        ghc-options:
+            - -threaded
+            - -rtsopts
+            - -with-rtsopts=-N
+        dependencies:
+            - haskell-book
+    morse-test:
+        main: Spec.hs
+        source-dirs: test/morse
         ghc-options:
             - -threaded
             - -rtsopts
