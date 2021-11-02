@@ -26,6 +26,7 @@ source-repository head
 
 library
   exposed-modules:
+      Fifteen.Excercises
       Fourteen.Addition
       Fourteen.Morse
       Thirteen.Hangman
