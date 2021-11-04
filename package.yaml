@@ -69,3 +69,12 @@ tests:
             - -with-rtsopts=-N
         dependencies:
             - haskell-book
+    fifteen:
+        main: Spec.hs
+        source-dirs: test/fifteen
+        ghc-options:
+            - -threaded
+            - -rtsopts
+            - -with-rtsopts=-N
+        dependencies:
+            - haskell-book
