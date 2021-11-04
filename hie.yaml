@@ -15,6 +15,9 @@ cradle:
     - path: "./app/Paths_haskell_book.hs"
       component: "haskell-book:exe:morse-exe"
 
+    - path: "./test/fifteen"
+      component: "haskell-book:test:fifteen"
+
     - path: "./test/hangman"
       component: "haskell-book:test:hangman-test"
 
